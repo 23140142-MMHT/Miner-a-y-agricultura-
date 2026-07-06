@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agricultura y Mineria - Actividades Primarias</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: #f4f3ef;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  a { color: #2a5e38; }
+
+  /* ---- NAV ---- */
+  nav {
+    background: #2a5e38;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  nav .logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+  }
+  nav ul {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; gap: 6px; flex-wrap: wrap;
+  }
+  nav ul a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-size: 0.82rem;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+  }
+  nav ul a:hover { background: rgba(255,255,255,0.15); }
+
+  /* ---- HEADER ---- */
+  .page-header {
+    background: #1e3d28;
+    color: #fff;
+    padding: 28px 16px 22px;
+  }
+  .page-header h1 {
+    font-size: 1.7rem;
+    margin: 0 0 8px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .page-header p {
+    margin: 0;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.88rem;
+    max-width: 480px;
+  }
+  .header-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin-top: 16px;
+  }
+
+  /* ---- WRAPPER ---- */
+  .contenido {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 14px;
+  }
+
+  /* ---- SECTION TITLES ---- */
+  .section-titulo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 28px 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #2a5e38;
+    color: #1a3d24;
+  }
+
+  .subtitulo {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: #333;
+  }
+
+  /* ---- TEXTO NORMAL ---- */
+  p { margin: 0 0 10px; }
+
+  /* ---- IMAGENES ---- */
+  .img-grande {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+  }
+
+  .img-mediana {
+    width: 100%;
+    max-width: 420px;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+  }
+
+  .img-chica {
+    float: right;
+    width: 170px;
+    height: 130px;
+    object-fit: cover;
+    margin: 0 0 10px 14px;
+    border: 1px solid #ccc;
+  }
+
+  .img-caption {
+    font-size: 0.72rem;
+    color: #777;
+    margin-top: -8px;
+    margin-bottom: 10px;
+  }
+
+  .clearfix::after { content: ""; display: table; clear: both; }
+
+  /* fila de dos fotos */
+  .dos-fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .dos-fotos img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+  }
+  .dos-fotos .foto-cap { font-size: 0.68rem; color: #777; }
+
+  /* tres fotos */
+  .tres-fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px;
+    margin: 10px 0;
+  }
+  .tres-fotos img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+  }
+
+  /* ---- TABLAS ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.83rem;
+  }
+  th {
+    background: #2a5e38;
+    color: #fff;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid #ddd; vertical-align: top; }
+  tr:nth-child(even) td { background: #f0efe9; }
+  tr:hover td { background: #e8f0ea; }
+
+  .tabla-wrapper { overflow-x: auto; }
+
+  /* tipo de herramienta badges */
+  .tip {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .tip-m { background: #fef3c7; color: #78350f; }
+  .tip-me { background: #dbeafe; color: #1e40af; }
+  .tip-t { background: #dcfce7; color: #14532d; }
+
+  /* ---- CAJA DESTACADA ---- */
+  .nota {
+    background: #eaf4ee;
+    border-left: 4px solid #2a5e38;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 0.85rem;
+  }
+
+  .nota-ambar {
+    background: #fef9ec;
+    border-left: 4px solid #b45309;
+  }
+
+  /* ---- SECCION MINERIA (fondo oscuro) ---- */
+  .seccion-mineria {
+    background: #151614;
+    color: #ddd;
+    padding: 24px 14px;
+    margin: 0;
+  }
+  .seccion-mineria h2 {
+    color: #e8e4d8;
+    border-bottom-color: #4a7c59;
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #4a7c59;
+    margin: 0 0 12px;
+  }
+  .seccion-mineria h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 18px 0 8px;
+    color: #c8c4b8;
+  }
+  .seccion-mineria p { color: #b0ada5; }
+  .seccion-mineria a { color: #7db88a; }
+  .seccion-mineria .img-grande { border-color: #333; }
+  .seccion-mineria .img-mediana { border-color: #333; }
+  .seccion-mineria .dos-fotos img { border-color: #333; }
+  .seccion-mineria .tres-fotos img { border-color: #333; }
+  .seccion-mineria .img-chica { border-color: #333; }
+  .seccion-mineria .img-caption { color: #666; }
+  .seccion-mineria .nota-ambar { background: #1e1800; border-color: #7c4f0a; color: #c8a060; }
+
+  /* mapa mental en mineria */
+  .mapa-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .mapa-nodo {
+    background: #1e2019;
+    border: 1px solid #2e2e28;
+    border-radius: 5px;
+    padding: 10px 12px;
+  }
+  .mapa-nodo strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 6px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #2e2e28;
+  }
+  .mapa-nodo ul { list-style: disc; padding-left: 14px; margin: 0; }
+  .mapa-nodo ul li { font-size: 0.76rem; color: #8a8880; padding: 1px 0; }
+  .n1 strong { color: #6fbf91; }
+  .n2 strong { color: #d4a853; }
+  .n3 strong { color: #7b9fd4; }
+  .n4 strong { color: #d47b7b; }
+  .n5 strong { color: #b07bd4; }
+  .n6 strong { color: #7bbfd4; }
+
+  /* ---- COMPARATIVO ---- */
+  .seccion-comp { padding: 20px 14px; }
+  .seccion-comp h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #2a5e38;
+    color: #1a3d24;
+  }
+  .comp-wrapper { overflow-x: auto; margin: 0 0 12px; }
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  .comp-table th { padding: 8px 10px; text-align: left; font-weight: 700; border-bottom: 2px solid #ccc; }
+  .comp-table .th-c { background: #eee; color: #555; font-size: 0.72rem; text-transform: uppercase; }
+  .comp-table .th-a { background: #eaf4ee; color: #1a3d24; }
+  .comp-table .th-m { background: #fef9ec; color: #7c4a0e; }
+  .comp-table td { padding: 7px 10px; border-bottom: 1px solid #e0ddd6; vertical-align: top; }
+  .comp-table td:first-child { background: #f5f4f0; font-size: 0.75rem; color: #666; font-weight: 600; white-space: nowrap; }
+  .comp-table tr:hover td { background: #faf9f6; }
+  .comp-table .grupo td { background: #e8e6e0 !important; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #888; padding: 5px 10px !important; border-top: 1px solid #ccc; }
+  .comp-table tr.grupo:hover td { background: #e8e6e0 !important; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    background: #222;
+    color: #aaa;
+    text-align: center;
+    padding: 16px;
+    font-size: 0.78rem;
+    margin-top: 0;
+  }
+  footer strong { color: #ddd; }
+
+  @media (max-width: 500px) {
+    .img-chica { width: 130px; height: 100px; }
+    .mapa-grid { grid-template-columns: 1fr; }
+    .tres-fotos { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">EcoPrimaria</a>
+  <ul>
+    <li><a href="#agricultura">Agricultura</a></li>
+    <li><a href="#mineria">Mineria</a></li>
+    <li><a href="#comparativo">Comparativo</a></li>
+  </ul>
+</nav>
+
+<!-- ENCABEZADO -->
+<div class="page-header">
+  <h1>Actividades Economicas Primarias</h1>
+  <p>Agricultura y Mineria — Sector Primario &middot; Bachillerato</p>
+  <img class="header-img"
+    src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=900&q=80"
+    alt="Campo agricola"/>
+</div>
+
+<!-- ============================================================ -->
+<!-- AGRICULTURA -->
+<!-- ============================================================ -->
+<div class="contenido">
+
+<section id="agricultura">
+  <h2 class="section-titulo">Agricultura</h2>
+
+  <div class="clearfix">
+    <img class="img-chica"
+      src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=400&q=80"
+      alt="Tractor en campo"/>
+    <p>
+      La <strong>agricultura</strong> es la actividad economica del sector primario que consiste en el
+      cultivo de la tierra para obtener alimentos, materias primas y fibras. Incluye desde la preparacion
+      del suelo hasta la cosecha, ademas de la ganaderia.
+    </p>
+    <p>
+      Es la actividad mas antigua practicada por el ser humano y sigue siendo la principal fuente de
+      empleo en muchos paises. Dependiendo de la escala puede ser de subsistencia (solo para el
+      consumo familiar) o comercial, orientada a mercados nacionales e internacionales.
+    </p>
+  </div>
+
+  <p>
+    Con el tiempo la tecnologia transformo los metodos tradicionales. El uso de maquinaria, sistemas
+    de riego tecnificados y drones agricolas permitio aumentar la produccion de forma significativa.
+    Sin embargo, la agricultura extensiva tambien tiene impactos negativos sobre el suelo y el agua
+    si no se gestiona bien.
+  </p>
+
+  <img class="img-grande"
+    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=900&q=80"
+    alt="Cosecha de trigo"/>
+  <div class="img-caption">Cosecha mecanizada de granos.</div>
+
+  <div class="nota">
+    La agroecologia y la agricultura organica buscan producir de forma sostenible, sin agotar
+    los recursos naturales del suelo ni contaminar el agua.
+  </div>
+
+  <div class="dos-fotos">
+    <div>
+      <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=500&q=80" alt="Siembra"/>
+      <div class="foto-cap">Siembra a mano</div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&q=80" alt="Riego"/>
+      <div class="foto-cap">Sistema de riego</div>
+    </div>
+  </div>
+
+  <h3 class="subtitulo" id="herramientas">Herramientas de la agricultura</h3>
+
+  <p>Las herramientas usadas en la agricultura van desde las mas simples hasta maquinaria
+  de alta tecnologia. Se clasifican principalmente en manuales, mecanicas y tecnologicas.</p>
+
+  <div class="tabla-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Herramienta</th>
+          <th>Tipo</th>
+          <th>Uso principal</th>
+          <th>Beneficio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Arado</strong></td>
+          <td><span class="tip tip-m">Manual / Mec.</span></td>
+          <td>Volteo y remocion del suelo</td>
+          <td>Oxigena la tierra, elimina malezas</td>
+        </tr>
+        <tr>
+          <td><strong>Tractor</strong></td>
+          <td><span class="tip tip-me">Mecanico</span></td>
+          <td>Labranza, transporte, siembra</td>
+          <td>Alta productividad por hectarea</td>
+        </tr>
+        <tr>
+          <td><strong>Azadon</strong></td>
+          <td><span class="tip tip-m">Manual</span></td>
+          <td>Deshierbe y preparacion del suelo</td>
+          <td>Bajo costo, facil manejo</td>
+        </tr>
+        <tr>
+          <td><strong>Sistema de riego</strong></td>
+          <td><span class="tip tip-t">Tecnologico</span></td>
+          <td>Distribucion de agua al cultivo</td>
+          <td>Ahorro hidrico, mejor rendimiento</td>
+        </tr>
+        <tr>
+          <td><strong>Sembradora</strong></td>
+          <td><span class="tip tip-me">Mecanico</span></td>
+          <td>Siembra uniforme de semillas</td>
+          <td>Precision y velocidad</td>
+        </tr>
+        <tr>
+          <td><strong>Cosechadora</strong></td>
+          <td><span class="tip tip-me">Mecanico</span></td>
+          <td>Recoleccion masiva de granos</td>
+          <td>Reduce tiempo y mano de obra</td>
+        </tr>
+        <tr>
+          <td><strong>Fumigadora</strong></td>
+          <td><span class="tip tip-t">Tecnologico</span></td>
+          <td>Aplicacion de pesticidas</td>
+          <td>Protege cultivos de plagas</td>
+        </tr>
+        <tr>
+          <td><strong>Machete</strong></td>
+          <td><span class="tip tip-m">Manual</span></td>
+          <td>Corte de vegetacion y cosecha</td>
+          <td>Versatil, bajo costo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <img class="img-mediana"
+    src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    alt="Herramientas agricolas en campo"/>
+  <div class="img-caption">Herramientas de labranza tradicional.</div>
+
+</section>
+
+</div><!-- /contenido -->
+
+<!-- ============================================================ -->
+<!-- MINERIA (seccion oscura, sin wrapper) -->
+<!-- ============================================================ -->
+<section class="seccion-mineria" id="mineria">
+<div class="contenido">
+
+  <h2>Mineria</h2>
+
+  <img class="img-grande"
+    src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=900&q=80"
+    alt="Mina a cielo abierto"/>
+  <div class="img-caption">Mineria a cielo abierto — extraccion de cobre.</div>
+
+  <div class="clearfix">
+    <img class="img-chica"
+      src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=400&q=80"
+      alt="Mineral"/>
+    <p>
+      La <strong>mineria</strong> es la actividad del sector primario que consiste en extraer
+      minerales y recursos geologicos del subsuelo o la superficie terrestre. Incluye metales
+      preciosos como el oro y la plata, metales industriales como el hierro y el cobre,
+      combustibles fosiles como el carbon, y minerales no metalicos.
+    </p>
+    <p>
+      Es uno de los sectores con mayor impacto economico en paises con grandes reservas naturales.
+      Al mismo tiempo, genera controversia por los danos que puede causar al medio ambiente
+      si no se gestiona correctamente.
+    </p>
+  </div>
+
+  <div class="nota-ambar">
+    La mineria produce contaminacion del suelo y rios si no se aplican medidas de remediacion
+    ambiental. La legislacion internacional exige cada vez mas estandares de mineria responsable.
+  </div>
+
+  <div class="dos-fotos">
+    <div>
+      <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=500&q=80" alt="Mineria subterranea"/>
+      <div class="foto-cap" style="color:#666">Mineria subterranea</div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1569263979104-865ab7cd8d13?w=500&q=80" alt="Extraccion"/>
+      <div class="foto-cap" style="color:#666">Maquinaria de extraccion</div>
+    </div>
+  </div>
+
+  <h3 id="mapa">Mapa conceptual — Mineria</h3>
+
+  <p style="margin-bottom:10px">Organizacion de los principales conceptos relacionados con la mineria:</p>
+
+  <div class="mapa-grid">
+    <div class="mapa-nodo n1">
+      <strong>Tipos</strong>
+      <ul>
+        <li>A cielo abierto</li>
+        <li>Subterranea</li>
+        <li>Por dragado</li>
+        <li>Aluvial</li>
+      </ul>
+    </div>
+    <div class="mapa-nodo n2">
+      <strong>Minerales</strong>
+      <ul>
+        <li>Metalicos (Au, Ag, Fe)</li>
+        <li>No metalicos (sal, caliza)</li>
+        <li>Energeticos (carbon)</li>
+      </ul>
+    </div>
+    <div class="mapa-nodo n3">
+      <strong>Proceso</strong>
+      <ul>
+        <li>Exploracion geologica</li>
+        <li>Extraccion</li>
+        <li>Procesamiento</li>
+        <li>Comercializacion</li>
+      </ul>
+    </div>
+    <div class="mapa-nodo n4">
+      <strong>Impacto</strong>
+      <ul>
+        <li>Contaminacion ambiental</li>
+        <li>Generacion de divisas</li>
+        <li>Empleo regional</li>
+      </ul>
+    </div>
+    <div class="mapa-nodo n5">
+      <strong>Herramientas</strong>
+      <ul>
+        <li>Explosivos</li>
+        <li>Excavadoras</li>
+        <li>Taladros industriales</li>
+      </ul>
+    </div>
+    <div class="mapa-nodo n6">
+      <strong>Normativa</strong>
+      <ul>
+        <li>Licencias ambientales</li>
+        <li>Seguridad laboral</li>
+        <li>Legislacion minera</li>
+      </ul>
+    </div>
+  </div>
+
+  <img class="img-mediana"
+    src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?w=600&q=80"
+    alt="Trabajador en mina"/>
+  <div class="img-caption" style="color:#666">Trabajador en faena minera.</div>
+
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- COMPARATIVO -->
+<!-- ============================================================ -->
+<div class="contenido">
+<section class="seccion-comp" id="comparativo">
+
+  <h2>Cuadro comparativo: Agricultura vs. Mineria</h2>
+
+  <p>A continuacion se comparan las herramientas, tipos de uso y beneficios de ambas actividades
+  del sector primario.</p>
+
+  <div class="dos-fotos" style="margin-bottom:14px">
+    <div>
+      <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=500&q=80" alt="Agricultura"/>
+      <div class="foto-cap">Agricultura</div>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=500&q=80" alt="Mineria"/>
+      <div class="foto-cap">Mineria</div>
+    </div>
+  </div>
+
+  <div class="comp-wrapper">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th class="th-c">Criterio</th>
+          <th class="th-a">Agricultura</th>
+          <th class="th-m">Mineria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="grupo"><td colspan="3">Herramientas</td></tr>
+        <tr>
+          <td>Manuales</td>
+          <td>Azada, machete, pala, hoz</td>
+          <td>Pico, cincel, martillo perforador</td>
+        </tr>
+        <tr>
+          <td>Mecanicas</td>
+          <td>Tractor, cosechadora, sembradora</td>
+          <td>Excavadora, volquete, trituradora</td>
+        </tr>
+        <tr>
+          <td>Tecnologicas</td>
+          <td>Riego tecnificado, drones, fumigadoras</td>
+          <td>Taladros industriales, sensores sismicos</td>
+        </tr>
+        <tr class="grupo"><td colspan="3">Tipos de uso</td></tr>
+        <tr>
+          <td>Terreno</td>
+          <td>Suelos fertiles, valles, llanuras</td>
+          <td>Subsuelo, montanas, yacimientos</td>
+        </tr>
+        <tr>
+          <td>Escala</td>
+          <td>Familiar, comercial e industrial</td>
+          <td>Industrial y semi-industrial</td>
+        </tr>
+        <tr>
+          <td>Recursos</td>
+          <td>Alimentos, fibras, biocombustibles</td>
+          <td>Metales, minerales, combustibles fosiles</td>
+        </tr>
+        <tr>
+          <td>Mano de obra</td>
+          <td>Alta, especialmente rural</td>
+          <td>Media-alta, tecnica y especializada</td>
+        </tr>
+        <tr class="grupo"><td colspan="3">Beneficios</td></tr>
+        <tr>
+          <td>Economico</td>
+          <td>Empleo rural, exportaciones, seguridad alimentaria</td>
+          <td>Divisas, royalties, desarrollo de infraestructura</td>
+        </tr>
+        <tr>
+          <td>Social</td>
+          <td>Sostiene comunidades rurales, reduce pobreza</td>
+          <td>Crea empleos formales, desarrolla regiones alejadas</td>
+        </tr>
+        <tr>
+          <td>Ambiental</td>
+          <td>Puede ser sostenible con agroecologia</td>
+          <td>Mayor impacto; mitigable con buenas practicas</td>
+        </tr>
+        <tr>
+          <td>Renovabilidad</td>
+          <td>Recurso renovable (ciclos de cultivo)</td>
+          <td>Recurso no renovable (agotamiento de yacimientos)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="nota">
+    <strong>Conclusion:</strong> Tanto la agricultura como la mineria son actividades esenciales para
+    la economia. La diferencia clave es que la agricultura trabaja con recursos renovables mientras
+    que la mineria extrae recursos que no se pueden recuperar en el corto plazo.
+  </div>
+
+  <img class="img-grande"
+    src="https://images.unsplash.com/photo-1473973266408-ed4e27abdd47?w=900&q=80"
+    alt="Productos agricolas"/>
+  <div class="img-caption">Productos del campo listos para distribucion.</div>
+
+</section>
+</div>
+
+<footer>
+  <strong>Actividades Economicas Primarias</strong> &mdash; Bachillerato 2026<br>
+  Agricultura y Mineria &middot; Sector Primario
+</footer>
+
+</body>
+</html>
